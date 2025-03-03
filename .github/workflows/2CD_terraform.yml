@@ -44,7 +44,8 @@
 
 name: 'Terraform'
 on:
-  pull_request: [main]
+  pull_request:
+    branches: [main]
 permissions:
   contents: read
 jobs:
