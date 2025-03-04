@@ -33,4 +33,4 @@ jobs:
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       - name: Test with pytest
         run: |-
-          pytest
+          pytest -v --prometheus-pushgateway-url=http://52.205.118.81:9091/metrics/job/${{ github.job }} --prometheus-extra-label=env=production
