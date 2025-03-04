@@ -25,6 +25,3 @@ def test_home(client):
     # Assert that the JSON response is {"status": "alive"}.
     # This checks that the home route is functioning as expected.
     assert response.json == {"status": "alive"}
-
-
-
