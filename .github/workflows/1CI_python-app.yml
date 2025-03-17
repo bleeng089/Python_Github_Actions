@@ -36,3 +36,9 @@ jobs:
           # performs a pytest in the current working dir. The -ver = verbose flag provides a more detailed output.
           pytest -v > pytest.json
           cat pytest.json
+      - name: 'Upload Artifacts'
+        uses: actions/upload-artifact@v4
+        with:
+          name: lint.json, pytest.json
+          path: .
+          retention-days: 1
