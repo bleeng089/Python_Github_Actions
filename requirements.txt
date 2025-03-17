@@ -4,4 +4,4 @@ pytest # Pytest is a testing framework for Python that makes it easy to write sm
 # https://docs.pytest.org/en/stable/
 # pytest-prometheus # pytest is designed to look for specific test functions rather than just running all the code in a file. This means you need to write test functions(test_app.py) that will explicitly test the code within app.py
 # https://github.com/yuvipanda/pytest-prometheus
-flake8 pytest
+pytest-flake8
