@@ -1,7 +1,8 @@
 flask # Flask is a lightweight web application framework for Python. It's designed to make getting started quick and easy, with the ability to scale up to complex applications. Flask provides tools and libraries for building web applications, but it doesn't enforce any dependencies or project layout, giving developers the flexibility to choose their tools and libraries
 # https://flask.palletsprojects.com/en/stable/
+
 pytest # Pytest is a testing framework for Python that makes it easy to write small tests, yet scales to support complex functional testing for applications and libraries. It provides detailed information on failing assert statements, auto-discovery of test modules and functions, and a rich plugin architecture
 # https://docs.pytest.org/en/stable/
-# pytest-prometheus # pytest is designed to look for specific test functions rather than just running all the code in a file. This means you need to write test functions(test_app.py) that will explicitly test the code within app.py
-# https://github.com/yuvipanda/pytest-prometheus
-pytest-flake8
+
+pytest-flake8 # This is a popular Python linting tool used to enforce coding style consistency and detect programming errors. It's a wrapper around pycodestyle (PEP 8 style guide checker), pyflakes (logical error checker), and mccabe (cyclomatic complexity checker).
+# https://flake8.pycqa.org/en/latest/user/options.html

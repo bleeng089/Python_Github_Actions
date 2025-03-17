@@ -24,15 +24,15 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-      - name: Flake8 is a popular Python linting tool used to enforce coding style consistency and detect programming errors. It's a wrapper around pycodestyle (PEP 8 style guide checker), pyflakes (logical error checker), and mccabe (cyclomatic complexity checker).
+      - name: Lint with Flake8. https://flake8.pycqa.org/en/latest/index.html
         run: |
           # stop the build if there are Python syntax errors or undefined names
-          # Prints to std out
-          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics > lint.json
           # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-          # Prints to std out
-          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics >> lint.json
+          cat lint.json
       - name: Test with pytest
         run: |-
           # performs a pytest in the current working dir. The -ver = verbose flag provides a more detailed output.
-          pytest -v 
+          pytest -v > pytest.json
+          cat pytest.json
