@@ -45,8 +45,11 @@ jobs:
             echo "SonarScanner detected issues, fetching details..." 
           else 
            RESPONSE=$(curl -s -u ${SONAR_TOKEN}: "https://sonarcloud.io/api/issues/search?componentKeys=bleeng089&severities=BLOCKER,CRITICAL&statuses=OPEN")
-           echo "$RESPONSE" | jq .
-           echo "$RESPONSE" | jq '.issues[] | {key, severity, status}'
+           # jq: A lightweight and flexible command-line JSON processor
+           echo "$RESPONSE" | jq . > entire_JSON_output.json
+           cat entire_JSON_output.json
+           echo "$RESPONSE" | jq '.issues[] | {key, severity, status}' > JSON_output.json
+           cat JSON_output.json
            fi
       - name: Lint with Flake8. https://flake8.pycqa.org/en/latest/index.html
         run: |
