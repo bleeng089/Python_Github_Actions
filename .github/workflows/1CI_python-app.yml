@@ -48,8 +48,6 @@ jobs:
            # jq: A lightweight and flexible command-line JSON processor
            echo "$RESPONSE" | jq . > entire_JSON_output.json
            cat entire_JSON_output.json
-           echo "$RESPONSE" | jq '.issues[] | {key, severity, status}' > JSON_output.json
-           cat JSON_output.json
            fi
       - name: Lint with Flake8. https://flake8.pycqa.org/en/latest/index.html
         run: |
@@ -66,6 +64,6 @@ jobs:
       - name: 'Upload Artifacts'
         uses: actions/upload-artifact@v4
         with:
-          name: lint.txt, pytest.txt, entire_JSON_output.json, JSON_output.json
+          name: lint.txt, pytest.txt, entire_JSON_output.json
           path: .
           retention-days: 1
