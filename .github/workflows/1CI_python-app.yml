@@ -24,10 +24,6 @@ jobs:
         uses: actions/setup-node@v3
       - name: Install python dependencies
         run: |
-          # upgrades Python globally
-          python -m pip install --upgrade pip
-          # upgrades Node.JS globally
-          npm install -g npm@latest 
           pip install -r requirements.txt
           npm install -D @sonar/scan
       - name: Configure SonarQube
