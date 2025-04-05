@@ -1,0 +1,7 @@
+organization=bleeng089
+projectKey=bleeng089_AWSUltramarine
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.61474
+dashboardUrl=https://sonarcloud.io/dashboard?id=bleeng089_AWSUltramarine
+ceTaskId=AZYFtNu1BPfzsaaMJdGM
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AZYFtNu1BPfzsaaMJdGM
