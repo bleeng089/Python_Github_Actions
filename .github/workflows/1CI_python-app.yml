@@ -26,12 +26,30 @@ jobs:
         run: |
           pip install -r requirements.txt
           npm install -D @sonar/scan
-      - name: Run Snyk to check for vulnerabilities, only fail on high-severity issues.
-        uses: snyk/actions/python@master
-        with: 
-          args: --severity-threshold=high --all-projects
+      # - name: Run Snyk to check for vulnerabilities, only fail on high-severity issues.
+      #   uses: snyk/actions/python@master
+      #   with: 
+      #     args: --severity-threshold=high --all-projects
+      #   env:
+      #     SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      - name: Install Snyk CLI
+        run: npm install -g snyk
+      - name: Run Snyk and output JSON
+        run: |
+          snyk test --all-projects --json > snyk-results.json
+          cat snyk-results.json
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      - name: Run Snyk and output SARIF. 
+        run: |
+          snyk test --all-projects --sarif > snyk-results.sarif
+          cat snyk-results.sarif
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      - name: Upload SARIF to GitHub. GitHub parses this SARIF file and shows security issues as inline annotations and inside the Security > Code scanning alerts UI.
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: snyk-results.sarif    
       - name: Configure SonarQube
         run: |
           cat > sonar-project.properties << EOF
@@ -70,6 +88,6 @@ jobs:
       - name: 'Upload Artifacts'
         uses: actions/upload-artifact@v4
         with:
-          name: lint.txt, pytest.txt, entire_JSON_output.json
+          name: lint.txt, pytest.txt, entire_JSON_output.json, snyk-results.json, snyk-results.sarif
           path: .
           retention-days: 1
