@@ -47,7 +47,7 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       - name: Upload SARIF to GitHub. GitHub parses this SARIF file and shows security issues as inline annotations and inside the Security > Code scanning alerts UI.
-        uses: github/codeql-action/upload-sarif@v2
+        uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: snyk-results.sarif    
       - name: Configure SonarQube
