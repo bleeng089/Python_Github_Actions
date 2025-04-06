@@ -26,6 +26,12 @@ jobs:
         run: |
           pip install -r requirements.txt
           npm install -D @sonar/scan
+      - name: Run Snyk to check for vulnerabilities, only fail on high-severity issues.
+        uses: snyk/actions/python@master
+        with: 
+          args: --severity-threshold=high --all-projects
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       - name: Configure SonarQube
         run: |
           cat > sonar-project.properties << EOF
